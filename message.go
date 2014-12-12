@@ -3,6 +3,8 @@ package mailmsg
 import (
 	"bytes"
 	"fmt"
+	"strings"
+	"unicode"
 )
 
 const (
@@ -32,6 +34,10 @@ func (imf *InternetMessageFormat) AddHeader(field_name, field_body string) error
 	// TODO scan for illegal values/characters
 	// TODO header value needs escaping
 	// TODO support for long header fields
+
+	// strip any trailing whitespace
+	field_body = strings.TrimRightFunc(field_body, unicode.IsSpace)
+
 	header_line := fmt.Sprintf("%s:%s", field_name, field_body)
 	imf.headers = append(imf.headers, []byte(header_line))
 

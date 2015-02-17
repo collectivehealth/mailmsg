@@ -12,7 +12,7 @@ const (
 	cr = ("\r") // U+000D
 )
 
-const crlfs = "\n\r" // string version of crlf
+const crlfs = "\r\n" // string version of crlf
 var crlf = []byte(crlfs)
 
 // currently do nothing but naive formatting.
